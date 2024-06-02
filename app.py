@@ -3,10 +3,12 @@ import numpy as np
 import plotly.express as px
 
 from data_utils.ShapeNetDataLoader import PartNormalDataset
-
+from download_data import download_and_extract_data, DATA_URL
 
 @st.cache_data()
 def load_dataset(split='test', npoints=2500, normal_channel=False):
+    download_and_extract_data(url=DATA_URL)
+
     return PartNormalDataset(
         root='./data/shapenetcore_partanno_segmentation_benchmark_v0_normal', 
         npoints=npoints, 
