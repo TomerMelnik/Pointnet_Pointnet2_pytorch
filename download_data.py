@@ -14,7 +14,7 @@ def download_and_extract_data(url, extract_to='./data'):
     # Download the file
     if not os.path.exists(zip_path):
         st.write(f"Downloading data from {url}...")
-        response = requests.get(url, stream=True)
+        response = requests.get(url, stream=True, verify=False)
         with open(zip_path, 'wb') as f:
             shutil.copyfileobj(response.raw, f)
         st.write("Download complete.")
