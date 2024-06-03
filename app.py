@@ -128,6 +128,7 @@ def render_visualization_tab(dataset):
             title=f"Sample {i + 1}",
         )
         st.plotly_chart(fig)
+
 def render_segmentation_tab():
     # Checkbox to select normal channel
     normal_channel = st.checkbox('Use Normal Channel', value=False)
@@ -168,7 +169,7 @@ def render_segmentation_tab():
             x=points[:, 0], 
             y=points[:, 1], 
             z=points[:, 2],
-            color=seg_pred[0],
+            color=seg_pred,
             title=f'Segmentation Result {i + 1}'
         )
         st.plotly_chart(fig)
@@ -178,9 +179,6 @@ def render_segmentation_tab():
 def main():
     tab_names = [
         "Visualization",
-        "T-Net",
-        "Global Features",
-        "Local Features",
         "Segmentation",
     ]
     tabs = st.tabs(tab_names)
@@ -189,12 +187,6 @@ def main():
         dataset = load_dataset()
         render_visualization_tab(dataset)
     with tabs[1]:
-        st.write("T-Net")
-    with tabs[2]:
-        st.write("Global Features")
-    with tabs[3]:
-        st.write("Local Features")
-    with tabs[4]:
         render_segmentation_tab()
 
 if __name__ == "__main__":
